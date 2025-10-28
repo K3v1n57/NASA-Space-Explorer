@@ -1,24 +1,26 @@
-/* Global reset & box sizing */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Base page styles */
 body {
   font-family: Arial, sans-serif;
   background-color: #f1f1f1;
   padding: 20px;
 }
 
-/* Centered container */
+/* ==========================================
+   CONTAINER
+========================================== */
 .container {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Header */
+/* ==========================================
+   HEADER
+========================================== */
 .site-header {
   display: flex;
   align-items: center;
@@ -34,13 +36,14 @@ h1 {
   color: #212121;
 }
 
-/* Logo */
 .logo {
   width: 140px;
   margin-right: 15px;
 }
 
-/* Date‐picker & button row */
+/* ==========================================
+   FILTERS (DATE PICKERS + BUTTON)
+========================================== */
 .filters {
   display: flex;
   flex-direction: column;
@@ -50,7 +53,6 @@ h1 {
   padding: 0 20px;
 }
 
-/* Inputs and buttons */
 input[type="date"],
 button {
   font-family: Arial, sans-serif;
@@ -64,73 +66,94 @@ button {
   width: 100%;
 }
 
-/* Button specific */
-button {
-  background-color: #d3d3d3;
-  color: black;
-  cursor: pointer;
-}
-button:hover {
-  background-color: #bfbfbf;
-}
-
-/* Stack horizontally on wider screens */
+/* Stack horizontally on larger screens */
 @media (min-width: 600px) {
   .filters {
     flex-direction: row;
     padding: 0;
   }
-  
+
   input[type="date"],
   button {
     width: auto;
   }
 }
 
-/* Gallery flex container */
+/* ==========================================
+   NASA RED BUTTON
+========================================== */
+button {
+  background-color: #e03c31; /* NASA Red */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #c23127; /* darker NASA red */
+}
+
+/* ==========================================
+   GALLERY - NASA CARD GRID
+========================================== */
 .gallery {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
   padding: 20px;
   justify-content: center;
 }
 
-/* Gallery items */
+/* Individual gallery item (card) */
 .gallery-item {
-  flex: 1 1 100%;  /* full width by default */
-  min-width: 280px;
-  max-width: 500px;
   background: white;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Three columns on wider screens */
-@media (min-width: 1000px) {
-  .gallery-item {
-    flex: 0 1 31%;
-  }
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
-.gallery-item img {
+/* Image and video styling */
+.gallery-item img,
+.gallery-item iframe {
   width: 100%;
   height: 200px;
   object-fit: cover;
   border-radius: 4px;
+  transition: transform 0.3s ease;
 }
 
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Card text */
 .gallery-item p {
-  margin-top: 10px;
-  padding: 5px;
+  padding: 10px 15px;
   font-size: 14px;
+  color: #333;
+  line-height: 1.4;
 }
 
-/* Placeholder content */
+.gallery-item strong {
+  font-size: 16px;
+  color: #000;
+}
+
+/* ==========================================
+   PLACEHOLDER (before user loads images)
+========================================== */
 .placeholder {
   flex: 1 1 100%;
   text-align: center;
@@ -141,4 +164,17 @@ button:hover {
 .placeholder-icon {
   font-size: 48px;
   margin-bottom: 20px;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+========================================== */
+@media (max-width: 599px) {
+  h1 {
+    font-size: 22px;
+  }
+
+  .logo {
+    width: 120px;
+  }
 }
